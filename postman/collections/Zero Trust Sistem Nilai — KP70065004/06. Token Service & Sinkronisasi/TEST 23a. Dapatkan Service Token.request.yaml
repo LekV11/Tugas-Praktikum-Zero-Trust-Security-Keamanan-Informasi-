@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{gateway_url}}/auth/service"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"client_id":"service-nilai","client_secret":"service_nilai_client_secret_demo_2024"}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+      pm.test('Service token diterima', () => { pm.expect(pm.response.json().data.access_token).to.be.a('string'); });
+      pm.collectionVariables.set('service_token', pm.response.json().data.access_token);
+    language: text/javascript
+order: 1000

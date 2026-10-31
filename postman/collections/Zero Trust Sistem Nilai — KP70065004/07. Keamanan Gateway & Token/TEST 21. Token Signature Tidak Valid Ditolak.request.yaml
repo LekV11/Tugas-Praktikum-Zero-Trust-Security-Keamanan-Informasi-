@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{nilai_url}}/nilai"
+method: GET
+headers:
+  Authorization: "{{bearer_token_0ot8}}"
+  X-Gateway-Secret: zt_gateway_secret_demo_key_2024_abcdef1234567890
+scripts:
+  - type: afterResponse
+    code: pm.test('Status 401', () => pm.response.to.have.status(401));
+    language: text/javascript
+order: 4000

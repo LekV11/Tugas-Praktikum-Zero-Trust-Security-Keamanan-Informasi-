@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{gateway_url}}/transkrip/207006002"
+method: GET
+headers:
+  Authorization: Bearer {{admin_token}}
+  X-Device-ID: device-admin-001
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+      pm.test('Admin dapat lihat semua NIM', () => { pm.expect(pm.response.json().success).to.be.true; });
+    language: text/javascript
+order: 3000

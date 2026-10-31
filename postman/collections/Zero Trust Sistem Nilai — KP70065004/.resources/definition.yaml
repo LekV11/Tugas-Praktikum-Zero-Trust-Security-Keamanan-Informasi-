@@ -1,0 +1,67 @@
+$kind: collection
+description: |-
+  Koleksi pengujian lengkap untuk Zero Trust Security — Sistem Nilai.
+
+  Pastikan ketiga service berjalan:
+
+  - API Gateway: [http://localhost:3000](http://localhost:3000)
+      
+  - Service Nilai: [http://localhost:3001](http://localhost:3001)
+      
+  - Service Transkrip: [http://localhost:3002](http://localhost:3002)
+      
+
+  Jalankan request di dalam folder secara berurutan.
+variables:
+  - key: gateway_url
+    value: http://localhost:3000
+    disabled: false
+    secret: false
+  - key: nilai_url
+    value: http://localhost:3001
+    disabled: false
+    secret: false
+  - key: transkrip_url
+    value: http://localhost:3002
+    disabled: false
+    secret: false
+  - key: dosen01_token
+    value: ""
+    disabled: false
+    secret: false
+  - key: dosen02_token
+    value: ""
+    disabled: false
+    secret: false
+  - key: mhs001_token
+    value: ""
+    disabled: false
+    secret: false
+  - key: mhs002_token
+    value: ""
+    disabled: false
+    secret: false
+  - key: admin_token
+    value: ""
+    disabled: false
+    secret: false
+  - key: service_token
+    value: ""
+    disabled: false
+    secret: false
+  - key: refresh_token_d1
+    value: ""
+    disabled: false
+    secret: false
+  - key: bearer_token_16vv
+    secret: true
+    disabled: false
+  - key: bearer_token_04gv
+    secret: true
+    disabled: false
+  - key: bearer_token_0ot8
+    secret: true
+    disabled: false
+  - key: nilai_id_1
+    value: ""
+    disabled: false

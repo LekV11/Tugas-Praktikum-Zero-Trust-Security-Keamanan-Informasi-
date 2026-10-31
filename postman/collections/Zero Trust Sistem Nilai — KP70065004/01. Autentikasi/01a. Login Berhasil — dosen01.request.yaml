@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{gateway_url}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+  X-Device-ID: device-dosen-001
+body:
+  type: text
+  content: '{"username":"dosen01","password":"Dosen@Demo2024"}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+      pm.test('Access token ada', () => { const d = pm.response.json().data; pm.expect(d.access_token).to.be.a('string'); });
+      const d = pm.response.json().data;
+      pm.collectionVariables.set('dosen01_token', d.access_token);
+      pm.collectionVariables.set('refresh_token_d1', d.refresh_token);
+    language: text/javascript
+order: 1000

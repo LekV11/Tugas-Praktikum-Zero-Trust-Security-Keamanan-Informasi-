@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{gateway_url}}/transkrip/sinkron"
+method: POST
+headers:
+  Authorization: Bearer {{service_token}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"kelas_id":2}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+      pm.test('Sinkronisasi berhasil', () => { pm.expect(pm.response.json().success).to.be.true; });
+    language: text/javascript
+order: 3000

@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{gateway_url}}/auth/refresh"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"refresh_token":"{{refresh_token_d1}}"}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 401', () => pm.response.to.have.status(401));
+      pm.test('Token dicabut', () => { pm.expect(pm.response.json().success).to.be.false; });
+    language: text/javascript
+order: 10000

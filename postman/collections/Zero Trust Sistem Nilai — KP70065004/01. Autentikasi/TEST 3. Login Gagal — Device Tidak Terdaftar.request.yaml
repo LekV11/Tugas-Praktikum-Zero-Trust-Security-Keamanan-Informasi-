@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{gateway_url}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+  X-Device-ID: device-tidak-terdaftar-999
+body:
+  type: text
+  content: '{"username":"dosen01","password":"Dosen@Demo2024"}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 403', () => pm.response.to.have.status(403));
+      pm.test('Pesan device tidak terdaftar', () => { pm.expect(pm.response.json().message).to.include('Device'); });
+    language: text/javascript
+order: 7000

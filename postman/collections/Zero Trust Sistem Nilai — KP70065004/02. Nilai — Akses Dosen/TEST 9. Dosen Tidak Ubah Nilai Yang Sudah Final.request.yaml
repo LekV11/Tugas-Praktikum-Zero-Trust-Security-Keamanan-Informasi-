@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{gateway_url}}/nilai/4"
+method: PUT
+headers:
+  Authorization: Bearer {{dosen02_token}}
+  X-Device-ID: device-dosen-002
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"nilai_angka":50}'
+scripts:
+  - type: afterResponse
+    code: |-
+      // ID nilai 4,5 adalah kelas final. Sesuaikan dengan data aktual.
+      // Jika test ini mengembalikan 403, bisa karena jam akses atau kepemilikan kelas.
+      pm.test('Status bukan 200', () => pm.expect(pm.response.code).to.be.oneOf([403, 409]));
+    language: text/javascript
+order: 3000

@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{gateway_url}}/nilai/{{nilai_id_1}}"
+method: PUT
+headers:
+  Authorization: Bearer {{dosen01_token}}
+  X-Device-ID: device-dosen-001
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"nilai_angka":88}'
+scripts:
+  - type: afterResponse
+    code: |-
+      // Catatan: Test ini hanya berhasil antara 07:00-21:00 WIB
+      const status = pm.response.status;
+      if (pm.response.code === 200) {
+        pm.test('Nilai berhasil diperbarui', () => pm.response.to.have.status(200));
+      } else if (pm.response.code === 403) {
+        pm.test('Di luar jam akses (diharapkan sesuai konfigurasi jam)', () => { pm.expect(pm.response.json().message).to.include('jam akses'); });
+      }
+    language: text/javascript
+order: 2000

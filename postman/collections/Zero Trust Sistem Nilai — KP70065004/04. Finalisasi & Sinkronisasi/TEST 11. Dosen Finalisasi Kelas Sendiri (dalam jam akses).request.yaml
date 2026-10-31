@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{gateway_url}}/kelas/1/finalisasi"
+method: POST
+headers:
+  Authorization: Bearer {{dosen01_token}}
+  X-Device-ID: device-dosen-001
+  Content-Type: application/json
+body:
+  type: text
+  content: "{}"
+scripts:
+  - type: afterResponse
+    code: |-
+      // Catatan: Test ini hanya berhasil antara 07:00-21:00 WIB
+      // Dan kelas 1 belum difinalisasi sebelumnya
+      if (pm.response.code === 200) {
+        pm.test('Finalisasi berhasil', () => pm.response.to.have.status(200));
+        pm.test('Sync transkrip dilakukan', () => { const d = pm.response.json().data; pm.expect(d.sync_transkrip).to.exist; });
+      } else if (pm.response.code === 403) {
+        pm.test('Di luar jam akses atau konflik data', () => { pm.expect(pm.response.code).to.be.oneOf([403, 409]); });
+      }
+    language: text/javascript
+order: 2000

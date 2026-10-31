@@ -1,0 +1,27 @@
+# Environment variables — JANGAN COMMIT
+.env
+
+# Node modules
+node_modules/
+*/node_modules/
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/settings.json
+.idea/
+
+# Build artifacts
+dist/
+build/

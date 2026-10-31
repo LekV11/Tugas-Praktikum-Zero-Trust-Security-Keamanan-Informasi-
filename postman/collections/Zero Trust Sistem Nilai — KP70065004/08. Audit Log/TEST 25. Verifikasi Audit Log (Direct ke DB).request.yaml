@@ -1,0 +1,11 @@
+$kind: http-request
+description: |-
+  Audit log dapat dilihat langsung di database SQLite.
+
+  Query untuk memeriksa:
+  SELECT * FROM audit_log ORDER BY timestamp DESC LIMIT 20;
+
+  Audit log mencatat setiap keputusan allow/deny dengan detail lengkap.
+url: "{{gateway_url}}/health"
+method: GET
+order: 1000

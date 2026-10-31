@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{gateway_url}}/nilai"
+method: GET
+headers:
+  Authorization: Bearer {{mhs001_token}}
+  X-Device-ID: device-mhs-001
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+      pm.test('Data nilai ada', () => { pm.expect(pm.response.json().data.nilai).to.be.an('array'); });
+    language: text/javascript
+order: 1000

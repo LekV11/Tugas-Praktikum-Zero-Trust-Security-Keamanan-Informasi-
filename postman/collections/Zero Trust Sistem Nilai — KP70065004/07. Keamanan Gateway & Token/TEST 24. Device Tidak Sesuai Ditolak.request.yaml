@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{gateway_url}}/nilai"
+method: GET
+headers:
+  Authorization: Bearer {{mhs001_token}}
+  X-Device-ID: device-mhs-002
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 403', () => pm.response.to.have.status(403));
+      pm.test('Pesan device tidak terdaftar', () => { pm.expect(pm.response.json().message.toLowerCase()).to.include('device'); });
+    language: text/javascript
+order: 5000

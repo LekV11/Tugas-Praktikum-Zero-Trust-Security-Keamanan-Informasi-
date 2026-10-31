@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{gateway_url}}/auth/refresh"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"refresh_token":"{{refresh_token_d1}}"}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+      pm.test('Access token baru diterima', () => { pm.expect(pm.response.json().data.access_token).to.be.a('string'); });
+    language: text/javascript
+order: 8000

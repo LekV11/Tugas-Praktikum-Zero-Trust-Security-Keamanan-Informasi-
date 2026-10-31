@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{gateway_url}}/kelas/2/finalisasi"
+method: POST
+headers:
+  Authorization: Bearer {{dosen01_token}}
+  X-Device-ID: device-dosen-001
+  Content-Type: application/json
+body:
+  type: text
+  content: "{}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status 403', () => pm.response.to.have.status(403));
+    language: text/javascript
+order: 1000

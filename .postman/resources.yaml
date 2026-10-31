@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: 45e97f08-4395-413d-87c5-99fa1a2620b5
+
+localResources:
+  collections:
+    - ../tests/zero-trust.postman_collection.json
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/Zero Trust Sistem Nilai — KP70065004: e72016fd-07fc-445f-861d-ae2f1c92945d

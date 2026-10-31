@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{gateway_url}}/transkrip/207006001"
+method: GET
+headers:
+  Authorization: Bearer {{dosen01_token}}
+  X-Device-ID: device-dosen-001
+scripts:
+  - type: afterResponse
+    code: pm.test('Status 403', () => pm.response.to.have.status(403));
+    language: text/javascript
+order: 4000

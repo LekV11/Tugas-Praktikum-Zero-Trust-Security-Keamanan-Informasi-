@@ -1,0 +1,16 @@
+{
+  "name": "zt-database",
+  "version": "1.0.0",
+  "description": "Database Seed — Zero Trust Sistem Nilai",
+  "main": "seed.js",
+  "scripts": {
+    "seed": "node seed.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5"
+  }
+}
